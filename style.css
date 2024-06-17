@@ -1,0 +1,108 @@
+.container-fluid {
+    max-width: 800px;
+    margin: 0 auto;
+    align-content:center;
+}
+
+.border {
+    max-width: 800px;
+    align-content: center;
+}
+
+/* Style for dropdown selection */
+.form-select-div {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-select {
+    padding: 10px 10px !important;
+    background-color: rgb(256,228,116,0.2) !important;
+    margin-top: 15px !important;
+    border: 3px solid #4c9191 !important;
+    border-radius: 30px !important;
+    width: 100% !important;
+    max-width: 485px !important;
+    box-sizing: border-box !important;
+}
+
+/* Styles for header texts */
+h1 {
+    color: #4c9191 !important;
+    font-weight: bolder !important;
+}
+
+.form-select {
+    border: 3px solid #4c9191;
+    border-radius: 30px;
+}
+
+/* Styles for result area */
+.result-div {
+    display: flex;
+    justify-content: center;
+    border-radius: 25%;
+    color: red;
+    width: 100%;
+}
+
+img {
+    border-radius: 6%;
+    border: 4px solid darkgray;
+    max-width: 100%;
+    display: block;
+}
+
+/* Styles for result area text */
+#result-area {
+    font-weight: 500;
+    font-size: x-large;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Button styles */
+.btn {
+    background-color: #4c9191 !important;
+    border: none !important;
+    border-radius: 30px !important;
+    width: 100%;
+    max-width: 485px;
+}
+
+.btn:hover {
+    transform: scale(1.03);
+    background-color: #80bcbc !important;
+    border: none;
+    color: white !important;
+    font-size: large;
+    font-weight: 500;
+}
+
+/* Input field styles */
+input[type=number] {
+    padding: 10px 10px;
+    background-color: rgb(256,228,116,0.2);
+    margin-top: 15px;
+    border: 3px solid #4c9191;
+    border-radius: 30px;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+    outline: none;
+    width: 100%;
+    max-width: 485px;
+    box-sizing: border-box;
+}
+
+/* Responsive adjustments */
+@media (max-width: 500px){
+    .container-fluid {
+        padding: 10px;
+    }
+
+}
