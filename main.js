@@ -100,7 +100,7 @@ function play() {
 
   if (userValue == answer) {
     resultArea.innerHTML = "<img src = ./image/Cheer.gif>";
-    chanceArea.innerHTML = `Bravo! Great guess! The answer was <u>${answer}</u>!<br>Want to play again?`;
+    chanceArea.innerHTML = `Bravo! Great guess! The answer was <u><strong>${answer}</strong></u>!<br>Want to play again?`;
     correctSound.play();
     levelCompleteSound.play();
     gameOver = true;
