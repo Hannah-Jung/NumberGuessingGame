@@ -21,6 +21,7 @@ let LowerSound = new Audio("./sound/LowerSound.mp3");
 let chance = 0;
 let gameOver = false;
 let history = [];
+let previousGuess = null;
 
 // Set initial audio properties
 gameOverSound.volume = 0.7;
@@ -43,7 +44,7 @@ submitBtn.hidden = true;
 // Update game settings based on chance selection
 chanceSelect.addEventListener("change", function () {
   chance = parseInt(chanceSelect.value);
-  if (chanceSelect != selectInfo) {
+  if (chanceSelect.value !== "") {
     chanceArea.innerHTML = `You have <strong>${chance}</strong> chances!`;
   } else {
     chanceArea.innerHTML = `Please select difficulty above.`;
@@ -75,7 +76,7 @@ function randomNum() {
 
 // Process user guess
 function play() {
-  let userValue = userInput.value;
+  let userValue = parseInt(userInput.value);
 
   if (userValue < 1 || userValue > 100) {
     resultArea.innerHTML = `Oops!<br>Your number must be between 1 and 100.<br>Try again!`;
@@ -89,6 +90,20 @@ function play() {
     wrongSound.play();
     userInput.value = "";
     return;
+  }
+
+  if (previousGuess !== null) {
+    if (
+      (previousGuess < answer && userValue < previousGuess) ||
+      (previousGuess > answer && userValue > previousGuess)
+    ) {
+      resultArea.innerHTML = `Hmm... ${userValue} is farther than ${previousGuess}.<br>Try a number ${
+        previousGuess > answer ? "smaller" : "bigger"
+      } than ${previousGuess}!`;
+      userInput.value = "";
+      wrongSound.play();
+      return;
+    }
   }
 
   chance--;
@@ -116,11 +131,13 @@ function play() {
     }
   }
 
+  previousGuess = userValue;
+
   if (chance < 1 && answer != userValue) {
     gameOver = true;
     gameOverSound.play();
     resultArea.innerHTML = "<img src = ./image/GameOver.gif>";
-    chanceArea.innerHTML = `The correct number was <u><strong>${answer}</strong></u>. Want to play again?`;
+    chanceArea.innerHTML = `The correct number was <u><strong>${answer}</strong></u>.<br> Want to play again?`;
   }
 
   if (gameOver) {
@@ -152,7 +169,7 @@ function reset() {
   resultArea.innerHTML = "<img src = ./image/QuestionMark.gif>";
   chance = parseInt(chanceSelect.value);
   history = [];
-  chanceArea.innerHTML = `Ready to play? Please select difficulty above.`;
+  chanceArea.innerHTML = `Ready to play?<br> Please select difficulty above.`;
   gameOver = false;
   historyArea.innerHTML = ``;
   submitBtn.hidden = false;
