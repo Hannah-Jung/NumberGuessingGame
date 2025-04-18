@@ -1,9 +1,19 @@
+body {
+    background-color: white;
+    color: black;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
 .container-fluid {
     margin: 0 auto;
 }
 
-.container-fluid, .border {
+.container-fluid .border {
     max-width: 800px;
+}
+
+.container-fluid h3, .container-fluid h4, #chance-area, #history-area {
+    color: dimgray
 }
 
 /* Style for dropdown selection */
@@ -18,7 +28,7 @@
     padding: 10px 10px;
     background-color: rgb(255, 228, 116, 0.2);
     margin-top: 15px;
-    border: 3px solid #4c9191;
+    border: 3px solid rgb(76, 145, 145);
     border-radius: 30px;
     width: 100%;
     max-width: 485px;
@@ -26,7 +36,7 @@
 }
 
 select option {
-    background-color: rgb(255, 228, 116, 0.2);
+    background-color: rgb(165, 229, 229);
     color: black;
 }
 
@@ -41,7 +51,7 @@ select option {
     display: flex;
     justify-content: center;
     border-radius: 25%;
-    color: red;
+    color: firebrick;
     width: 100%;
 }
 
@@ -79,7 +89,7 @@ img {
     color: white;
     font-size: large;
     font-weight: 500;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 }
 
 /* Input field styles */
@@ -96,9 +106,89 @@ input[type=number] {
     box-sizing: border-box;
 }
 
+#toggle-sound,
+#themeToggle {
+    margin: 10px;
+    padding: 5px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 3px solid #4c9191;
+    border-radius: 20px;
+    background-color: #4c9191;
+    color: white
+}
+
+#toggle-sound:hover,
+#themeToggle:hover {
+    background-color: #80bcbc;
+    border: 3px solid #80bcbc;
+    color: white;
+    transition: all 0.2s ease;
+}
+
+.blinking-text {
+    text-align: center;
+    margin-top: 20%;
+    font-size: 24px;
+    color: #4c9191;
+    animation: blink 1.5s infinite;
+    text-decoration-color: #4c9191;
+}
+
+body.dark-mode {
+    background-color: gray;
+    color: white;
+}
+
+body.dark-mode .container-fluid h1,
+body.dark-mode .container-fluid h3 {
+    color: #a0e7e5;
+}
+
+body.dark-mode #chance-area,
+body.dark-mode #history-area,
+body.dark-mode #user-input::placeholder {
+    color: azure;
+}
+
+body.dark-mode #chance-select,
+body.dark-mode input[type=number] {
+    background-color: rgba(100, 100, 100, 0.5);
+    color: azure;
+    border: 3px solid #a0e7e5;
+}
+
+body.dark-mode select option {
+    background-color: paleturquoise;
+    color: dimgray;
+}
+
+body.dark-mode .result-div {
+    color: maroon;
+}
+
+body.dark-mode .blinking-text {
+    color: paleturquoise;
+}
+
+
 /* Responsive adjustments */
 @media (max-width: 500px) {
     .container-fluid {
         padding: 10px;
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
     }
 }
