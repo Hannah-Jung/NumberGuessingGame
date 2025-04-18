@@ -11,10 +11,10 @@
 </head>
 
 <body>
-    <div
-        class="container-fluid border border-success pt-5 pb-5 mt-2 mb-2 border-opacity-25 border-warning-subtle border-5 rounded-4 text-center">
+    <div class="container-fluid pt-5 pb-5 mt-2 mb-2 border-opacity-25  border-5 rounded-4 text-center">
         <h1 class="mb-3">Dare to Guess?</h1>
-        <h3 class="text-body-tertiary mb-3">Just pick the right number between 1 and 100!</h3>
+        <button id="toggle-sound">🔊</button><button id="themeToggle">🌙</button>
+        <h3 class="mb-3">Just pick the right number between 1 and 100!</h3>
 
         <!-- Dropdown to select number of chances -->
         <div class="mb-3 form-select-div">
@@ -31,8 +31,8 @@
         <div class="mt-4 result-div">
             <p id="result-area"><img src="./image/QuestionMark.gif"></p>
         </div>
-        <h4 id="history-area" class="text-body-tertiary mt-1 mb-3"></h4>
-        <h4 id="chance-area" class="text-body-secondary"></h4>
+        <h4 id="history-area" class="mt-1 mb-3"></h4>
+        <h4 id="chance-area"></h4>
 
         <!-- Input for user to enter a number -->
         <input id="user-input" type="number" placeholder="Enter here" class="text-center">
