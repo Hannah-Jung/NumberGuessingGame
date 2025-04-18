@@ -1,12 +1,9 @@
 .container-fluid {
-    max-width: 800px;
     margin: 0 auto;
-    align-content:center;
 }
 
-.border {
+.container-fluid, .border {
     max-width: 800px;
-    align-content: center;
 }
 
 /* Style for dropdown selection */
@@ -17,26 +14,26 @@
     align-items: center;
 }
 
-.form-select {
-    padding: 10px 10px !important;
-    background-color: rgb(256,228,116,0.2) !important;
-    margin-top: 15px !important;
-    border: 3px solid #4c9191 !important;
-    border-radius: 30px !important;
-    width: 100% !important;
-    max-width: 485px !important;
-    box-sizing: border-box !important;
+#chance-select {
+    padding: 10px 10px;
+    background-color: rgb(255, 228, 116, 0.2);
+    margin-top: 15px;
+    border: 3px solid #4c9191;
+    border-radius: 30px;
+    width: 100%;
+    max-width: 485px;
+    box-sizing: border-box;
+}
+
+select option {
+    background-color: rgb(255, 228, 116, 0.2);
+    color: black;
 }
 
 /* Styles for header texts */
-h1 {
-    color: #4c9191 !important;
-    font-weight: bolder !important;
-}
-
-.form-select {
-    border: 3px solid #4c9191;
-    border-radius: 30px;
+.container-fluid h1 {
+    color: #4c9191;
+    font-weight: bolder;
 }
 
 /* Styles for result area */
@@ -51,7 +48,7 @@ h1 {
 img {
     border-radius: 6%;
     border: 4px solid darkgray;
-    max-width: 100%;
+    max-width: 60%;
     display: block;
 }
 
@@ -67,31 +64,31 @@ img {
 }
 
 /* Button styles */
-.btn {
-    background-color: #4c9191 !important;
-    border: none !important;
-    border-radius: 30px !important;
+.container-fluid .btn {
+    background-color: #4c9191;
+    border: none;
+    border-radius: 30px;
     width: 100%;
     max-width: 485px;
 }
 
-.btn:hover {
+.container-fluid .btn:hover {
     transform: scale(1.03);
-    background-color: #80bcbc !important;
+    background-color: #80bcbc;
     border: none;
-    color: white !important;
+    color: white;
     font-size: large;
     font-weight: 500;
+    transition: all 0.3s ease;
 }
 
 /* Input field styles */
 input[type=number] {
     padding: 10px 10px;
-    background-color: rgb(256,228,116,0.2);
+    background-color: rgb(255, 228, 116, 0.2);
     margin-top: 15px;
     border: 3px solid #4c9191;
     border-radius: 30px;
-    -webkit-transition: 0.5s;
     transition: 0.5s;
     outline: none;
     width: 100%;
@@ -100,7 +97,7 @@ input[type=number] {
 }
 
 /* Responsive adjustments */
-@media (max-width: 500px){
+@media (max-width: 500px) {
     .container-fluid {
         padding: 10px;
     }
