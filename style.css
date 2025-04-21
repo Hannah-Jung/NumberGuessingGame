@@ -1,17 +1,21 @@
+/* Base styles for body: default light theme */
 body {
     background-color: white;
     color: black;
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+/* Container settings for page layout */
 .container-fluid {
     margin: 0 auto;
 }
 
+/* Limit width when 'border' class is added */
 .container-fluid .border {
     max-width: 800px;
 }
 
+/* Set text color for certain headers and game info areas */
 .container-fluid h3, .container-fluid h4, #chance-area, #history-area {
     color: dimgray
 }
@@ -106,8 +110,9 @@ input[type=number] {
     box-sizing: border-box;
 }
 
+/* Toggle sound/dark mode styles */
 #toggle-sound,
-#themeToggle {
+#toggle-darkMode {
     margin: 10px;
     padding: 5px 12px;
     font-size: 16px;
@@ -119,13 +124,14 @@ input[type=number] {
 }
 
 #toggle-sound:hover,
-#themeToggle:hover {
+#toggle-darkMode:hover {
     background-color: #80bcbc;
     border: 3px solid #80bcbc;
     color: white;
     transition: all 0.2s ease;
 }
 
+/* Style for blinking text shown after win/lose */
 .blinking-text {
     text-align: center;
     margin-top: 20%;
@@ -135,6 +141,7 @@ input[type=number] {
     text-decoration-color: #4c9191;
 }
 
+/* Dark mode styling */
 body.dark-mode {
     background-color: gray;
     color: white;
@@ -179,6 +186,7 @@ body.dark-mode .blinking-text {
     }
 }
 
+/* Animation for blinking effect */
 @keyframes blink {
     0% {
         opacity: 1;
