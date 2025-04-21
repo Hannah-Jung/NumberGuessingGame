@@ -112,7 +112,7 @@ toggleSoundBtn.addEventListener("click", () => {
 });
 
 // Toggle between dark and light mode, and update button label
-const toggleBtn = document.getElementById("themeToggle");
+const toggleBtn = document.getElementById("toggle-darkMode");
 
 toggleBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
