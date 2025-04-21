@@ -13,17 +13,20 @@
 <body>
     <div class="container-fluid pt-5 pb-5 mt-2 mb-2 border-opacity-25  border-5 rounded-4 text-center">
         <h1 class="mb-3">Dare to Guess?</h1>
-        <button id="toggle-sound">🔊</button><button id="themeToggle">🌙</button>
-        <h3 class="mb-3">Just pick the right number between 1 and 100!</h3>
+        <!-- Sound and dark mode control buttons -->
+        <button id="toggle-sound" title="Sound">🔊 Sound On</button><button id="toggle-darkMode" title="Dark Mode">🌙
+            Dark
+            Mode</button>
+        <h3 class="m-3">Just pick the right number between 1 and 100!</h3>
 
         <!-- Dropdown to select number of chances -->
         <div class="mb-3 form-select-div">
-            <select id="chance-select" class="form-select text-center">
+            <select id="chance-select" class="form-select text-center" title="Select Difficulty">
                 <option id="select-info" selected disabled class="text-body-secondary">- Select Difficulty -</option>
-                <option value="10">Easy Mode</option>
-                <option value="7">Standard Mode</option>
-                <option value="5">Hard Mode</option>
-                <option value="3">Legendary Mode</option>
+                <option value="10" title="Easy Mode">Easy Mode</option>
+                <option value="7" title="Standard Mode">Standard Mode</option>
+                <option value="5" title="Hard Mode">Hard Mode</option>
+                <option value="3" title="Legendary Mode">Legendary Mode</option>
             </select>
         </div>
 
@@ -34,16 +37,16 @@
         <h4 id="history-area" class="mt-1 mb-3"></h4>
         <h4 id="chance-area"></h4>
 
-        <!-- Input for user to enter a number -->
-        <input id="user-input" type="number" placeholder="Enter here" class="text-center">
+        <!-- Input field where user enters their guess -->
+        <input id="user-input" type="number" placeholder="Enter here" class="text-center" title="Enter here">
         <div class="m-5"></div>
 
         <!-- Button to submit the guess -->
-        <button id="submit-btn" class="btn btn-dark">Submit</button>
+        <button id="submit-btn" class="btn btn-dark" title="Submit">Submit</button>
         <p></p>
 
         <!-- Button to start a new game -->
-        <button id="new-game-btn" class="btn btn-dark">New Game</button>
+        <button id="new-game-btn" class="btn btn-dark" title="New Game">New Game</button>
     </div>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
