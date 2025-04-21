@@ -85,11 +85,12 @@ userInput.addEventListener("input", function () {
   }
 });
 
+// Toggle between sound on and off, and update button label
 const toggleSoundBtn = document.getElementById("toggle-sound");
 
 toggleSoundBtn.addEventListener("click", () => {
   soundEnabled = !soundEnabled;
-  toggleSoundBtn.innerText = soundEnabled ? "🔊" : "🔇";
+  toggleSoundBtn.innerText = soundEnabled ? "🔊 Sound On" : "🔇 Sound Off";
 
   // Stop all sounds if sound is turned off
   if (!soundEnabled) {
@@ -110,15 +111,16 @@ toggleSoundBtn.addEventListener("click", () => {
   }
 });
 
+// Toggle between dark and light mode, and update button label
 const toggleBtn = document.getElementById("themeToggle");
 
 toggleBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 
   if (document.body.classList.contains("dark-mode")) {
-    toggleBtn.textContent = "☀️";
+    toggleBtn.textContent = "☀️ Light Mode";
   } else {
-    toggleBtn.textContent = "🌙";
+    toggleBtn.textContent = "🌙 Dark Mode";
   }
 });
 
@@ -132,6 +134,7 @@ function randomNum() {
 function play() {
   let userValue = parseInt(userInput.value);
 
+  // Check if input is out of range (1–100) and show a warning
   if (userValue < 1 || userValue > 100) {
     resultArea.innerHTML = `Oops!<br>Your number must be between 1 and 100.<br>Try again!`;
     userInput.value = "";
@@ -139,6 +142,7 @@ function play() {
     return;
   }
 
+  // Check if the guess was already made and give a hint to choose a different number
   if (history.includes(userValue)) {
     resultArea.innerHTML = `You've already guessed that number.<br>Choose something ${
       previousGuess < answer ? "higher" : "lower"
@@ -148,6 +152,7 @@ function play() {
     return;
   }
 
+  // Check if the user ignored the previous hint and guessed in the wrong direction again
   if (previousGuess !== null) {
     if (
       (previousGuess < answer && userValue < previousGuess) ||
@@ -171,9 +176,10 @@ function play() {
   history.push(userValue);
   console.log(history);
 
+  // Check the user's guess and display appropriate feedback (correct, higher, or lower)
   if (userValue == answer) {
     resultArea.innerHTML = "<img src = ./image/Cheer.gif>";
-    chanceArea.innerHTML = `Bravo! Great guess!<br> The answer was <u><strong><span class="blinking-text">${answer}</span></strong></u>!<br><br>Want to play again?`;
+    chanceArea.innerHTML = `Bravo! Great guess!<br> The answer: <strong><span class="blinking-text"><u>${answer}</u></span></strong><br><br>Want to play again?`;
     playSound(correctSound);
     playSound(levelCompleteSound);
     gameOver = true;
@@ -189,6 +195,7 @@ function play() {
     }
   }
 
+  // Save the current guess and handle game over if no chances are left
   previousGuess = userValue;
 
   if (chance < 1 && answer != userValue) {
@@ -235,6 +242,7 @@ function reset() {
   userInput.hidden = true;
   chanceSelect.hidden = false;
 
+  // Set the game difficulty based on the selected value and show/hide input and submit button accordingly
   if (selectedDifficulty !== "") {
     chance = parseInt(selectedDifficulty);
     chanceArea.innerHTML = `You have <strong>${chance}</strong> chances!`;
