@@ -1,32 +1,43 @@
 ## Number Guessing Game
-
-Welcome to the Number Guessing Game, a web-based game where players try to guess a randomly generated number between 1 and 100. The game offers multiple difficulty levels and provides feedback on each guess, indicating whether the guess is too high, too low, or correct.
+![image](https://github.com/user-attachments/assets/252a3f14-8e72-4357-9ae5-6d83a153bdab)
 
 ## Table of Contents
 - [Introduction](#introduction)
 - [Features](#features)
+- [Videos](#videos)
 - [Technologies Used](#technologies-used)
 - [Usage](#usage)
+- [Link](#link)
   
 ## Introduction
-The Number Guessing Game is designed to provide an engaging experience for users. The game features a sleek and modern design, allowing users to select difficulty levels, receive visual and audio feedback, and enjoy a responsive interface suitable for various screen sizes.
+The **Number Guessing Game** provides a **smart and interactive experience** beyond simple guessing. Players can **select a difficulty level**, **receive immediate hints** to guide them, and benefit from **strong input validation** that prevents invalid or illogical entries. **Past guesses and hints are tracked** to help players make informed decisions without losing unnecessary chances. With features like **sound control**, **theme switching**, and **persistent difficulty memory** across sessions, the game ensures a **seamless and personalized gameplay**. Fully responsive with **Bootstrap**, it adapts to all screen sizes for an optimal user experience.
 
 ## Features
-- **Multiple Difficulty Levels**: Easy, Standard, Hard, and Legendary modes to challenge users.
-- **Feedback System**: Provides real-time feedback indicating whether the guess is too high, too low, or correct.
-- **Visual and Audio Cues**: Includes animations and sounds to enhance the gaming experience.
+- **Difficulty Selection**: Choose your difficulty before starting. Each level sets a different number of available chances, which is displayed immediately after selection.
+- **Smart Input Validation**: Only valid numbers are accepted. Inputs outside the range (like negatives, numbers above the maximum, decimals, letters, symbols, or empty input) are all blocked with instant feedback — no chances are wasted.
+- **Duplicate and Illogical Guess Protection**: Prevents entering the same guess twice or making guesses outside the logical range based on previous hints (e.g., guessing higher than a previous "lower" hint). No chances are deducted, and the correct guessing range is clearly updated.
+- **Sound Effects with Instant Control**: Sound effects are triggered on guesses, and sound can be toggled on/off instantly — even mid-sound.
+- **Persistent Difficulty Setting**: After playing once, the selected difficulty remains saved even when starting a new game. However, you can always change it anytime before guessing.
+- **Theme Toggle (Light/Dark Mode)**: Seamlessly switch between Light and Dark themes for optimal visibility during gameplay.
+- **Game Reset Anytime**: Click "New Game" to reset the game instantly. The previously selected difficulty remains unless you manually select a different one.
 - **Responsive Design**: Ensures the game is accessible on both desktop and mobile devices.
 
+## Videos
+
 ## Technologies Used
-- **HTML5**: For structuring the content of the web pages.
-- **CSS3**: For styling the web pages, including layout, colors, and fonts.
-- **Bootstrap 5.3.3**: For responsive design and prebuilt components.
-- **JavaScript**: For game logic and interactivity.
+- **HTML5**: For structuring the content and forms on the page.
+- **CSS3**: For styling the layout, colors, fonts, and animations.
+- **Bootstrap 5.3.3**: Using CSS media queries to ensure the game works on both large and small screens.
+- **JavaScript**: For game logic, user interactions, and dynamic updates to the page.
 
 ## Usage
-- **Navigation**: Open index.html in a web browser to start the game.
-- **Select Difficulty**: Use the dropdown menu to choose a difficulty level.
-- **Enter Guess**: Input your guess (a number between 1 and 100) in the text field.
-- **Submit Guess**: Click the 'Submit' button or press 'Enter' to submit your guess.
-- **Feedback**: Receive feedback on your guess and adjust your next guess accordingly.
-- **New Game**: Click the 'New Game' button to reset and start a new game.
+- **Set Up the Game**: Select your preferred difficulty. The game will display how many chances you get based on your selection.
+- **Make Guesses**: Enter a number and submit it using the "Submit" button or the Enter key. The game will immediately tell you whether to guess higher or lower based on your input.
+- **Track Your Progress**: Use the history section to review your previous guesses. Remaining chances are also clearly shown.
+- **Correct Your Input if Needed**: If you accidentally enter an invalid number or an illogical guess, the game will give feedback without penalizing your chances.
+- **Toggle Sound**: Use the sound button anytime to instantly mute or unmute sound effects during gameplay.
+- **Switch Themes**: Click the theme toggle button to switch between Light and Dark modes for better comfort.
+- **Start a New Game**: Click the "New Game" button at any time to start fresh while keeping your selected difficulty unless you decide to change it.
+
+## Link
+- [Play the **Number Guessing Game** now](https://numberguessinggamebyhj.netlify.app/)
