@@ -1,10 +1,10 @@
 // Required variables
 let answer = 0;
-let submitBtn = document.getElementById("submit-btn");
-let newGameBtn = document.getElementById("new-game-btn");
 let userInput = document.getElementById("user-input");
 let resultArea = document.getElementById("result-area");
 let chanceArea = document.getElementById("chance-area");
+let submitBtn = document.getElementById("submit-btn");
+let newGameBtn = document.getElementById("new-game-btn");
 let historyArea = document.getElementById("history-area");
 let chanceSelect = document.getElementById("chance-select");
 let selectInfo = document.getElementById("select-info");
@@ -16,15 +16,15 @@ let gameOverSound = new Audio("./sound/GameOverSound.mp3");
 let wrongSound = new Audio("./sound/WrongSound.mp3");
 let higherSound = new Audio("./sound/HigherSound.mp3");
 let lowerSound = new Audio("./sound/LowerSound.mp3");
-let failTrumpetSound = new Audio("./sound/FailTrumpetSound.mp3");
 
 // Game state variables
 let chance = 0;
 let gameOver = false;
 let history = [];
-let previousGuess = null;
 let selectedDifficulty = "";
 let soundEnabled = true;
+let minGuess = 1;
+let maxGuess = 100;
 
 // Set initial audio properties
 gameOverSound.volume = 0.7;
@@ -32,7 +32,7 @@ higherSound.volume = 0.7;
 higherSound.playbackRate = 1.7;
 lowerSound.volume = 0.7;
 lowerSound.playbackRate = 1.7;
-failTrumpetSound.volume = 0.4;
+wrongSound.volume = 0.4;
 
 // Sound player function
 function playSound(sound) {
@@ -60,19 +60,29 @@ chanceSelect.addEventListener("change", function () {
 
   if (chanceSelect.value !== "") {
     chanceArea.innerHTML = `You have <strong>${chance}</strong> chances!`;
+    userInput.hidden = false;
+    submitBtn.hidden = true;
   } else {
     chanceArea.innerHTML = `Please select difficulty above.`;
+    userInput.hidden = true;
+    submitBtn.hidden = true;
   }
-  userInput.hidden = false;
-  submitBtn.hidden = false;
 });
 
 // Handle 'Enter' key press
 userInput.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
+    if (userInput.value.trim() === "") {
+      resultArea.innerHTML =
+        "You forgot to enter a number.<br>Please enter a valid number!";
+      playSound(wrongSound);
+      return;
+    }
     play();
+    if (chanceSelect.value !== "") {
+      chanceSelect.hidden = true;
+    }
   }
-  chanceSelect.hidden = true;
 });
 
 // Remove non-integer values (like decimals) from the input
@@ -82,6 +92,11 @@ userInput.addEventListener("input", function () {
 
   if (userInput.value.includes(".")) {
     userInput.value = userInput.value.split(".")[0]; // Only keep the integer part before the decimal
+  }
+  if (userInput.value !== "") {
+    submitBtn.hidden = false;
+  } else {
+    submitBtn.hidden = true;
   }
 });
 
@@ -106,8 +121,6 @@ toggleSoundBtn.addEventListener("click", () => {
     higherSound.currentTime = 0;
     lowerSound.pause();
     lowerSound.currentTime = 0;
-    failTrumpetSound.pause();
-    failTrumpetSound.currentTime = 0;
   }
 });
 
@@ -134,43 +147,26 @@ function randomNum() {
 function play() {
   let userValue = parseInt(userInput.value);
 
-  // Check if input is out of range (1–100) and show a warning
-  if (userValue < 1 || userValue > 100) {
-    resultArea.innerHTML = `Oops!<br>Your number must be between 1 and 100.<br>Try again!`;
-    userInput.value = "";
-    playSound(failTrumpetSound);
-    return;
-  }
-
-  // Check if the guess was already made and give a hint to choose a different number
-  if (history.includes(userValue)) {
-    resultArea.innerHTML = `You've already guessed that number.<br>Choose something ${
-      previousGuess < answer ? "higher" : "lower"
-    } than ${previousGuess}!`;
+  if (isNaN(userValue)) {
+    resultArea.innerHTML =
+      "You forgot to enter a number.<br>Please enter a valid number!";
     playSound(wrongSound);
     userInput.value = "";
     return;
   }
 
-  // Check if the user ignored the previous hint and guessed in the wrong direction again
-  if (previousGuess !== null) {
-    if (
-      (previousGuess < answer && userValue < previousGuess) ||
-      (previousGuess > answer && userValue > previousGuess)
-    ) {
-      resultArea.innerHTML = `Hint was ${
-        previousGuess < answer ? "higher" : "lower"
-      },<br> but you guessed ${
-        previousGuess < userValue ? "higher" : "lower"
-      } than ${previousGuess}.<br>Try again!`;
-      userInput.value = "";
-      playSound(failTrumpetSound);
-      return;
-    }
+  console.log(`minGuess: ${minGuess}, maxGuess: ${maxGuess}`);
+
+  // Check if input is out of range (1–100) and show a warning
+  if (userValue < minGuess || userValue > maxGuess) {
+    resultArea.innerHTML = `Oops!<br>Your number must be between ${minGuess} and ${maxGuess}.<br>Try again!`;
+    userInput.value = "";
+    playSound(wrongSound);
+    return;
   }
 
   chance--;
-  chanceArea.innerHTML = `Keep going! You still have <strong>${chance}</strong> chance(s) left to win!`;
+  chanceArea.innerHTML = `You still have <strong>${chance}</strong> chance(s) left to win! Keep going!`;
   console.log("chance", chance);
 
   history.push(userValue);
@@ -179,30 +175,31 @@ function play() {
   // Check the user's guess and display appropriate feedback (correct, higher, or lower)
   if (userValue == answer) {
     resultArea.innerHTML = "<img src = ./image/Cheer.gif>";
-    chanceArea.innerHTML = `Bravo! Great guess!<br> The answer: <strong><span class="blinking-text"><u>${answer}</u></span></strong><br><br>Want to play again?`;
+    chanceArea.innerHTML = `Bravo! Great guess!<br> The answer: <strong><span class="blinking-text"><u>${answer}</u></span></strong><br><br>Want to play again?<br>Click 🎮 New Game above`;
     playSound(correctSound);
     playSound(levelCompleteSound);
     gameOver = true;
   } else if (userValue < answer) {
     resultArea.innerHTML = "<img src = ./image/Higher.gif>";
+    minGuess = userValue + 1;
+    console.log(`Updated minGuess: ${minGuess}`);
     if (chance > 0) {
       playSound(higherSound);
     }
   } else if (userValue > answer) {
     resultArea.innerHTML = "<img src = ./image/Lower.gif>";
+    maxGuess = userValue - 1;
+    console.log(`Updated maxGuess: ${maxGuess}`);
     if (chance > 0) {
       playSound(lowerSound);
     }
   }
 
-  // Save the current guess and handle game over if no chances are left
-  previousGuess = userValue;
-
   if (chance < 1 && answer != userValue) {
     gameOver = true;
     playSound(gameOverSound);
     resultArea.innerHTML = "<img src = ./image/GameOver.gif>";
-    chanceArea.innerHTML = `The correct number: <strong><span class="blinking-text"><u>${answer}</u></span></strong><br><br>Want to play again?`;
+    chanceArea.innerHTML = `The correct number: <strong><span class="blinking-text"><u>${answer}</u></span></strong><br><br>Want to play again?<br>Click 🎮 New Game above`;
   }
 
   if (gameOver) {
@@ -218,10 +215,14 @@ function play() {
 // Update guess history display
 function updateHistory() {
   let userValue = userInput.value;
-  if (userValue != answer) {
+  if (gameOver) {
     historyArea.innerHTML = `You've guessed: <strong>${history.join(
       ", "
     )}</strong>.`;
+  } else if (userValue != answer) {
+    historyArea.innerHTML = `You've guessed: <strong>${history.join(
+      ", "
+    )}</strong>.<br>The answer is between <strong>${minGuess} ~ ${maxGuess}</strong>`;
   } else {
     historyArea.innerHTML = ``;
   }
@@ -236,11 +237,15 @@ function reset() {
   history = [];
   chanceArea.innerHTML = `Ready to play?<br> Please select difficulty above.`;
   gameOver = false;
-  previousGuess = null;
   historyArea.innerHTML = ``;
   submitBtn.hidden = false;
   userInput.hidden = true;
   chanceSelect.hidden = false;
+  levelCompleteSound.pause();
+  gameOverSound.pause();
+
+  minGuess = 1;
+  maxGuess = 100;
 
   // Set the game difficulty based on the selected value and show/hide input and submit button accordingly
   if (selectedDifficulty !== "") {
@@ -255,7 +260,6 @@ function reset() {
     userInput.hidden = true;
     submitBtn.hidden = true;
   }
-  submitBtn.hidden = true;
 }
 
 // Initialize game
