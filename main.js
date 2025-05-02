@@ -73,8 +73,9 @@ chanceSelect.addEventListener("change", function () {
 userInput.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     if (userInput.value.trim() === "") {
-      resultArea.innerHTML =
-        "You forgot to enter a number.<br>Please enter a valid number!";
+      resultArea.innerHTML = "<img src= ./image/Wrong.gif>";
+      historyArea.innerHTML = `You forgot to enter a number.<br>Your number must be between <strong>${minGuess}</strong> and <strong>${maxGuess}</strong>.`;
+      chanceArea.innerHTML = `You still have <strong>${chance}</strong> chance(s) left to win! Keep going!`;
       playSound(wrongSound);
       return;
     }
@@ -148,8 +149,9 @@ function play() {
   let userValue = parseInt(userInput.value);
 
   if (isNaN(userValue)) {
-    resultArea.innerHTML =
-      "You forgot to enter a number.<br>Please enter a valid number!";
+    resultArea.innerHTML = "<img src= ./image/Wrong.gif>";
+    historyArea.innerHTML = `You forgot to enter a number.<br>Your number must be between <strong>${minGuess}</strong> and <strong>${maxGuess}</strong>.`;
+    chanceArea.innerHTML = `You still have <strong>${chance}</strong> chance(s) left to win! Keep going!`;
     playSound(wrongSound);
     userInput.value = "";
     return;
@@ -159,7 +161,9 @@ function play() {
 
   // Check if input is out of range (1–100) and show a warning
   if (userValue < minGuess || userValue > maxGuess) {
-    resultArea.innerHTML = `Oops!<br>Your number must be between ${minGuess} and ${maxGuess}.<br>Try again!`;
+    resultArea.innerHTML = "<img src= ./image/Wrong.gif>";
+    historyArea.innerHTML = "";
+    chanceArea.innerHTML = `Oops!<br>Your number must be between <strong>${minGuess}</strong> and <strong>${maxGuess}</strong>.<br>Try again!<br>You still have <strong>${chance}</strong> chances.`;
     userInput.value = "";
     playSound(wrongSound);
     return;
