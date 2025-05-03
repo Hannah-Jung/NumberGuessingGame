@@ -23,6 +23,7 @@ The **Number Guessing Game** provides a **smart and interactive experience** bey
 - **Responsive Design**: Ensures the game is accessible on both desktop and mobile devices.
 
 ## Videos
+https://github.com/user-attachments/assets/4e7b64e6-5281-49c7-aaa3-6543af1df20b
 
 ## Technologies Used
 - **HTML5**: For structuring the content and forms on the page.
